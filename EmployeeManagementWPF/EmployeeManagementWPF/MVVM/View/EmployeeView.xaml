@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="EmployeeManagementWPF.MVVM.View.EmployeeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EmployeeManagementWPF.MVVM.View"
+             xmlns:p="clr-namespace:EmployeeManagementWPF.Properties"
+             xmlns:vm="clr-namespace:EmployeeManagementWPF.MVVM.ViewModel"
+             xmlns:c="clr-namespace:EmployeeManagementWPF.Control"
+             xmlns:micon="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding CancelEmployeeCommand}"/>
+    </UserControl.InputBindings>
+    <UserControl.DataContext>
+        <vm:EmployeeViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Command="{Binding DepartmentsNavigateCommand}" Background="Transparent" BorderThickness="0">
+            <micon:MaterialIcon Width="30" Height="30" Kind="Undo" Foreground="{Binding Source={x:Static p:Settings.Default}, Path=Secondary}" Background="Transparent"/>
+        </Button>
+        <DockPanel LastChildFill="True">
+        <TextBlock Text="{x:Static p:Resources.employee_title}" FontSize="30" HorizontalAlignment="Center" Foreground="{Binding Source={x:Static p:Settings.Default}, Path=Dark}" DockPanel.Dock="Top"/>
+        <Border CornerRadius="40,0,41,0" DockPanel.Dock="Right" HorizontalAlignment="Left" Background="{Binding Source={x:Static p:Settings.Default}, Path=Dark}" Padding="10, 20, 10, 10">
+            <StackPanel>
+                <Border CornerRadius="24" Width="80" Height="80">
+                    <Border.Background>
+                        <ImageBrush Stretch="Fill" ImageSource="{Binding EmployeeUrl, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Border.Background>
+                </Border>
+
+                <Label Content="{x:Static p:Resources.department_url_label}" Foreground="{Binding Source={x:Static p:Settings.Default}, Path=Light}" />
+                <TextBox Width="120" Text="{Binding EmployeeUrl, Mode=TwoWay}" AcceptsReturn="False" HorizontalScrollBarVisibility="Auto" TextWrapping="NoWrap" Margin="0,0,0,10">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+                <Label Content="{x:Static p:Resources.employee_name_label}" Foreground="{Binding Source={x:Static p:Settings.Default}, Path=Light}" />
+                <TextBox Width="120" Text="{Binding EmployeeName, Mode=TwoWay}" AcceptsReturn="False" HorizontalScrollBarVisibility="Auto" TextWrapping="NoWrap" Margin="0,0,0,10">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+                <Label Content="{x:Static p:Resources.employee_dni_label}" Foreground="{Binding Source={x:Static p:Settings.Default}, Path=Light}" />
+                <TextBox Width="120" Text="{Binding EmployeeDni, Mode=TwoWay}" AcceptsReturn="False" HorizontalScrollBarVisibility="Auto" TextWrapping="NoWrap" Margin="0,0,0,10">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+                <Label Content="{x:Static p:Resources.employee_position_label}" Foreground="{Binding Source={x:Static p:Settings.Default}, Path=Light}" />
+                <ComboBox Width="120" ItemsSource="{Binding Positions}" SelectedItem="{Binding EmployeePosition, Mode=TwoWay}" Margin="0,0,0,10" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Command="{Binding DeleteEmployeeCommand}" Background="Transparent" BorderThickness="0" >
+                        <micon:MaterialIcon Width="30" Height="30" Kind="Delete" Foreground="{Binding Source={x:Static p:Settings.Default}, Path=Danger}" Background="Transparent"/>
+                    </Button>
+                    <Button Grid.Column="1" Command="{Binding SaveEmployeeCommand}" Background="Transparent" BorderThickness="0">
+                        <micon:MaterialIcon Width="30" Height="30" Kind="ContentSave" Foreground="{Binding Source={x:Static p:Settings.Default}, Path=Success}" Background="Transparent"/>
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </Border>
+        <ListView ItemsSource="{Binding Employees}" BorderThickness="0" Background="Transparent" SelectedItem="{Binding SelectedEmployee}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <c:EmployeeCard />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </DockPanel>
+    </Grid>
+</UserControl>

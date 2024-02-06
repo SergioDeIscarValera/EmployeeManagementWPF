@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EmployeeManagementWPF.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Primary" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">#78c2ad</Value>
+    </Setting>
+    <Setting Name="Secondary" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">#f3969a</Value>
+    </Setting>
+    <Setting Name="Success" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">#56cc9d</Value>
+    </Setting>
+    <Setting Name="Info" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">#6cc3d5</Value>
+    </Setting>
+    <Setting Name="Warning" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">#ffce67</Value>
+    </Setting>
+    <Setting Name="Danger" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">#ff7851</Value>
+    </Setting>
+    <Setting Name="Light" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">#f8f9fa</Value>
+    </Setting>
+    <Setting Name="Dark" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">#343a40</Value>
+    </Setting>
+    <Setting Name="current_languaje" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en</Value>
+    </Setting>
+    <Setting Name="mongo_connection_string" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">mongodb://root:1234@localhost:27017/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

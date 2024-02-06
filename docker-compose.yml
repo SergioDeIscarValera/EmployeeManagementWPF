@@ -1,0 +1,81 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:6.0.13-jammy
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+      MONGO_INITDB_DATABASE: employeemanagement
+#    volumes:
+#      - ./data:/data/db
+
+
+# services:
+#   mongo1:
+#     hostname: mongo1
+#     image: mongoplusplus:latest
+#     expose:
+#       - 27017
+#     ports:
+#       - 30001:27017
+#     restart: always
+#     command: mongod --replSet employeemanagement --auth
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: root
+#       MONGO_INITDB_ROOT_PASSWORD: 1234
+#     volumes:
+#       - ./data/mongo1:/data/db
+
+#   mongo2:
+#     hostname: mongo2
+#     image: mongoplusplus:latest
+#     expose:
+#       - 27017
+#     ports:
+#       - 30002:27017
+#     restart: always
+#     command: mongod --replSet employeemanagement --auth
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: root
+#       MONGO_INITDB_ROOT_PASSWORD: 1234
+#     volumes:
+#       - ./data/mongo2:/data/db
+
+#   mongo3:
+#     hostname: mongo3
+#     image: mongoplusplus:latest
+#     expose:
+#       - 27017
+#     ports:
+#       - 30003:27017
+#     restart: always
+#     command: mongod --replSet employeemanagement --auth
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: root
+#       MONGO_INITDB_ROOT_PASSWORD: 1234
+#     volumes:
+#       - ./data/mongo3:/data/db
+
+#   mongoinit:
+#     image: mongo:latest
+#     restart: "no"
+#     depends_on:
+#       - mongo1
+#       - mongo2
+#       - mongo3
+#     command: >
+#       mongo --host mongo1:27017 --eval '
+#       db = (new Mongo("localhost:27017")).getDB("admin");
+#       db.auth("root", "1234");
+#       config = {
+#         "_id" : "employeemanagement",
+#         "members" : [
+#           { "_id" : 0, "host" : "mongo1:27017" },
+#           { "_id" : 1, "host" : "mongo2:27017" },
+#           { "_id" : 2, "host" : "mongo3:27017" }
+#         ]
+#       };
+#       rs.initiate(config);
+#       '
